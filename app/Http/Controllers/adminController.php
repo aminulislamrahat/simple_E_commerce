@@ -31,7 +31,42 @@ class adminController extends Controller
         $admin->save();
 
         $data = $req->name;
-        $req->session()->flash('user',$data);
+        $req->session()->flash('note',$data);
         return redirect ('login_admin');
     }
+
+    function adminSignin(Request $req)
+    {
+        $req->validate([
+            'email' => 'required|max:30',
+            'password' => 'required|min:8|max:30'
+
+        ]);
+
+        $check = Admin::where([
+            ['email','=',$req->email],
+            ['password','=',$req->password]
+        ])->first();
+
+        if ($check)
+        {
+            $req->session()->put( 'admin_user', $check->name);
+            //$req->session()->put( 'email', $check->email);
+
+            return redirect('adminDashboard');
+
+        }
+        else
+        {
+            $data = "Your email or password is incorrect";
+            $req->session()->flash('note',$data);
+            return redirect ('login_admin');
+
+        }
+
+
+
+    }
+
+
 }

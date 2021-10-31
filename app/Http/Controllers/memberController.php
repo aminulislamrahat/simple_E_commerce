@@ -27,7 +27,7 @@ class memberController extends Controller
         $member->save();
 
         $data ="dear ".($req->first_name ." ".$req->last_name) ." your account has been created . Please login" ;
-        $req->session()->flash('message',$data);
+        $req->session()->flash('note',$data);
         return redirect ('login');
     }
 
@@ -47,7 +47,7 @@ class memberController extends Controller
         if ($check)
         {
             $req->session()->put( 'user', $check->first_name);
-            $req->session()->put( 'email', $check->email);
+            //$req->session()->put( 'email', $check->email);
 
             return redirect('memberDashboard');
 
@@ -55,7 +55,7 @@ class memberController extends Controller
         else
         {
             $data = "Your email or password is incorrect";
-            $req->session()->flash('message',$data);
+            $req->session()->flash('note',$data);
             return redirect ('login');
 
         }
