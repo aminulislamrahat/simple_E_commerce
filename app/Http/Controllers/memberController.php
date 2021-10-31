@@ -26,8 +26,41 @@ class memberController extends Controller
         $member->password = $req->password;
         $member->save();
 
-        $data = ($req->first_name ." ".$req->last_name);
-        $req->session()->flash('user',$data);
+        $data ="dear ".($req->first_name ." ".$req->last_name) ." your account has been created . Please login" ;
+        $req->session()->flash('message',$data);
         return redirect ('login');
+    }
+
+    function memberSignin(Request $req)
+    {
+        $req->validate([
+            'email' => 'required|max:30',
+            'password' => 'required|min:8|max:30'
+
+        ]);
+
+        $check = Member::where([
+            ['email','=',$req->email],
+            ['password','=',$req->password]
+        ])->first();
+
+        if ($check)
+        {
+            $req->session()->put( 'user', $check->first_name);
+            $req->session()->put( 'email', $check->email);
+
+            return redirect('memberDashboard');
+
+        }
+        else
+        {
+            $data = "Your email or password is incorrect";
+            $req->session()->flash('message',$data);
+            return redirect ('login');
+
+        }
+
+
+
     }
 }

@@ -7,15 +7,26 @@
 
 <form action="user" method="POST">
     @csrf
-    {{ $errors }}
-    <table>
+    <table border="1">
         <tr>
             <td><label for="email">E-mail : </label><br></td>
-            <td><input placeholder="example@gmail.com" type="email" name="email" id="email"><br></td>
+            <td><input placeholder="example@gmail.com" type="email" name="email" id="email"><br>
+                <span style="color:red">
+                @error('first_name')
+                    {{ $message }}
+                @enderror
+                </span><br>
+            </td>
         </tr>
         <tr>
             <td><label for="password">Password : </label><br></td>
-            <td><input type="password" name="password" id="password"><br></td>
+            <td><input type="password" name="password" id="password"><br>
+                <span style="color:red">
+                @error('first_name')
+                    {{ $message }}
+                @enderror
+                </span><br>
+            </td>
         </tr>
         <tr>
             <td></td>

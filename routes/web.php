@@ -34,9 +34,42 @@ Route::post('add',[ProductController::class,"addData"]);
 Route::post('add_member',[memberController::class,"addMember"]);
 Route::post('add_admin',[adminController::class,"addAdmin"]);
 
+Route::post('signin',[memberController::class,"memberSignin"]);
+
 Route::get('product',[ProductController::class,"showData"]);
 Route::get('detail/{id}',[ProductController::class,"showProduct"]);
 Route::get('edit/{id}',[ProductController::class,"showEdit"]);
 Route::put('update',[ProductController::class,"updateProduct"])->name('update');
 Route::get('delete/{id}',[ProductController::class,"delete"]);
 
+
+
+Route::get('login',function(){
+    if(session()->has('user'))
+    {
+        return redirect('memberDashboard');
+    }
+    return view('login');
+});
+Route::get('logout',function(){
+    if(session()->has('user'))
+    {
+        session()->pull('user',null);
+        session()->pull('email',null);
+    }
+    return redirect('login');
+});
+
+
+
+Route::get('memberDashboard',function(){
+    if(session()->has('user'))
+    {
+        return view('memberDashboard');
+    }
+    else
+    {
+        return redirect('login');
+    }
+
+});
