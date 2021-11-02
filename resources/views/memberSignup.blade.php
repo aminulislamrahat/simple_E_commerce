@@ -1,5 +1,7 @@
 <h1>New account Registration </h1>
 
+@include("navbar")
+
 <form action="add_member" method="POST">
     @csrf
 

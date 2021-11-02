@@ -1,4 +1,6 @@
 <h1>Login page</h1>
+@include("navbar")
+
 @if(session('note'))
     <h3 style="color:rgb(34, 192, 34)"> {{ session('note') }}</h3>
 @endif

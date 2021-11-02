@@ -1,4 +1,5 @@
 <h1>Admin Register</h1>
+@include("navbar")
 
 <form action="add_admin" method="POST">
     @csrf

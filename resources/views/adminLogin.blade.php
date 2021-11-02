@@ -1,4 +1,5 @@
 <h1>Admin Login page</h1>
+@include("navbar")
 
 @if(session('note'))
     <h3 style="color:rgb(34, 192, 34)"> {{ session('note') }} </h3>
@@ -29,9 +30,9 @@
             </td>
         </tr>
         <tr>
-            <td></td>
-            <td><input type="submit" name="submit_bt" value="login" id="submit_bt"></td>
 
+            <td><input type="submit" name="submit_bt" value="login" id="submit_bt"></td>
+            <td><a href="signup_admin">SIGNUP admin</a></td>
         </tr>
 
 

@@ -22,7 +22,7 @@
     @foreach($collection as $product)
     <tr>
         <td>{{ $product['id'] }}</td>
-        <td>{{ $product['p_name'] }}</td>
+        <td><a href={{"detail/".$product['id']}}>{{ $product['p_name'] }}</a></td>
         <td>{{ $product['p_code'] }}</td>
         <td>{{ $product['p_category'] }}</td>
         <td>{{ $product['p_price'] }}</td>
